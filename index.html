@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="todo.js"></script>
+    <script src="todolist.js"></script>
+    <script src="app.js" defer="defer"></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="hero-title">Hopeless Coordinators Inc.</h1>
+    </header>
+    <main>
+      <section class="create-todo">
+        <form>
+          <div class="label-input-wrapper">
+            <label for="title">What do you need to do?</label>
+            <input
+              type="text"
+              name=""
+              id="title"
+              placeholder="Enter todo title" />
+          </div>
+          <div class="label-input-wrapper">
+            <label for="content">More details</label>
+            <input
+              type="text"
+              name=""
+              id="content"
+              placeholder="Enter description" />
+          </div>
+          <div class="label-input-wrapper">
+            <label for="deadline"></label>
+            <input
+              type="datetime-local"
+              name=""
+              id="deadline"
+              placeholder="Pick end date" />
+          </div>
+          <button type="button" class="todo-submit-btn">Create ToDo</button>
+        </form>
+      </section>
+      <section>
+        <ul class="todo-list-container"></ul>
+      </section>
+    </main>
+  </body>
+</html>
