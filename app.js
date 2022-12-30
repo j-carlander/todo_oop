@@ -2,6 +2,11 @@ const todoSubmitBtn = document.querySelector(".todo-submit-btn");
 
 const listContainer = document.querySelector(".todo-list-container");
 
+const showButton = document.querySelector("#showDialog");
+const dialog = document.querySelector(".create-todo-dialog");
+// const selectEl = favDialog.querySelector("select");
+// const confirmBtn = favDialog.querySelector("#confirmBtn");
+
 let todoList = new TodoList();
 
 todoList.addTodoItem(
@@ -31,22 +36,26 @@ todoList.addTodoItem(
 todoList.printTitles();
 
 function handleSubmitBtnClick(e) {
-  let parent = e.target.parentNode;
+  // let parent = e.target.parentNode;
 
   //   console.log(parent);
 
-  const todoTitle = parent.querySelector("#title");
-  const todoContent = parent.querySelector("#content");
-  const todoDeadline = parent.querySelector("#deadline");
+  const todoTitle = dialog.querySelector("#title");
+  const todoContent = dialog.querySelector("#content");
+  const todoDeadline = dialog.querySelector("#deadline");
 
   let deadlineValue = todoDeadline.value;
   deadlineValue = deadlineValue.replace("T", " ") + ":00";
   console.log(deadlineValue);
   todoList.addTodoItem(
-    new TodoItem(todoTitle.value, todoContent.value, todoDeadline.value)
+    new TodoItem(todoTitle.value, todoContent.value, deadlineValue)
   );
   todoList.listToHTML(listContainer);
 }
+
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
 
 todoSubmitBtn.addEventListener("click", (e) => {
   handleSubmitBtnClick(e);

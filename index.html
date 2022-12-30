@@ -18,33 +18,41 @@
     </header>
     <main>
       <section class="create-todo">
-        <form>
-          <div class="label-input-wrapper">
-            <label for="title">What do you need to do?</label>
-            <input
-              type="text"
-              name=""
-              id="title"
-              placeholder="Enter todo title" />
-          </div>
-          <div class="label-input-wrapper">
-            <label for="content">More details</label>
-            <input
-              type="text"
-              name=""
-              id="content"
-              placeholder="Enter description" />
-          </div>
-          <div class="label-input-wrapper">
-            <label for="deadline"></label>
-            <input
-              type="datetime-local"
-              name=""
-              id="deadline"
-              placeholder="Pick end date" />
-          </div>
-          <button type="button" class="todo-submit-btn">Create ToDo</button>
-        </form>
+        <dialog class="create-todo-dialog">
+          <form method="dialog">
+            <div class="label-input-wrapper">
+              <label for="title">What do you need to do?</label>
+              <input
+                type="text"
+                name=""
+                id="title"
+                placeholder="Enter todo title" />
+            </div>
+            <div class="label-input-wrapper">
+              <label for="content">More details</label>
+              <input
+                type="text"
+                name=""
+                id="content"
+                placeholder="Enter description" />
+            </div>
+            <div class="label-input-wrapper">
+              <label for="deadline"></label>
+              <input
+                type="datetime-local"
+                name=""
+                id="deadline"
+                placeholder="Pick end date" />
+            </div>
+            <button type="button" class="todo-submit-btn" value="default">
+              Create ToDo
+            </button>
+            <button type="button" class="todo-cancel-btn" value="cancel">
+              Cancel
+            </button>
+          </form>
+        </dialog>
+        <p><button id="showDialog">+</button></p>
       </section>
       <section>
         <ul class="todo-list-container"></ul>
