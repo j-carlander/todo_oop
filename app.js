@@ -16,6 +16,8 @@ const todoCancelBtn = dialogContainer.querySelector(".todo-cancel-btn");
 
 const searchField = document.querySelector(".search-field");
 
+const deadlineBtn = document.querySelector(".deadline-btn");
+
 let todoList = new TodoList();
 todoList.retrieveFromLocalStorage();
 todoList.listToHTML(listContainer);
@@ -73,6 +75,10 @@ searchResultContainer.addEventListener("click", (event) => {
     return false;
   }
   searchResultContainer.classList.add("hide");
+});
+
+deadlineBtn.addEventListener("click", () => {
+  todoList.orderByEndDate();
 });
 
 // todoList.printTitles();

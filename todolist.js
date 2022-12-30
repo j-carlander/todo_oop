@@ -56,4 +56,11 @@ class TodoList {
       );
     }
   }
+
+  orderByEndDate() {
+    this.todos.sort(function (a, b) {
+      return new Date(a.endDate) - new Date(b.endDate);
+    });
+    this.listToHTML(listContainer);
+  }
 }
