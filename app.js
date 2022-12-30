@@ -17,49 +17,21 @@ const todoCancelBtn = dialogContainer.querySelector(".todo-cancel-btn");
 const searchField = document.querySelector(".search-field");
 
 let todoList = new TodoList();
-
-function addDummyContent() {
-  todoList.addTodoItem(
-    new TodoItem(
-      "Laundry",
-      "On monday at 15:00 I have to do laundry before parents arrive",
-      "2022-12-30 15:00:00"
-    )
-  );
-
-  todoList.addTodoItem(
-    new TodoItem(
-      "Dishes",
-      "On tuesday at 16:00 I have to do dishes before parents arrive",
-      "2022-12-30 15:00:00"
-    )
-  );
-
-  todoList.addTodoItem(
-    new TodoItem(
-      "Bake Panncakes",
-      "Promised my younger brother to help him bake pancakes at 17:00 tomorrow",
-      "2022-12-30 15:00:00"
-    )
-  );
-
-  todoList.listToHTML(listContainer);
-}
-
-// todoList.printTitles();
+todoList.retrieveFromLocalStorage();
+todoList.listToHTML(listContainer);
 
 // functions for eventhandlers
 
 function handleSubmitBtnClick(e) {
   let deadlineValue = todoDeadline.value;
   deadlineValue = deadlineValue.replace("T", " ") + ":00";
-  console.log(deadlineValue);
   todoList.addTodoItem(
     new TodoItem(todoTitle.value, todoContent.value, deadlineValue)
   );
 
   dialogContainer.classList.add("hide");
   todoList.listToHTML(listContainer);
+  todoList.saveToLocalStorage();
 
   todoTitle.value = "";
   todoContent.value = "";
@@ -103,4 +75,34 @@ searchResultContainer.addEventListener("click", (event) => {
   searchResultContainer.classList.add("hide");
 });
 
-todoList.listToHTML(listContainer);
+// todoList.printTitles();
+// todoList.getUrgentTodos();
+
+function addDummyContent() {
+  todoList.addTodoItem(
+    new TodoItem(
+      "Laundry",
+      "On monday at 15:00 I have to do laundry before parents arrive",
+      "2022-12-30 15:00:00"
+    )
+  );
+
+  todoList.addTodoItem(
+    new TodoItem(
+      "Dishes",
+      "On tuesday at 16:00 I have to do dishes before parents arrive",
+      "2022-12-30 15:00:00"
+    )
+  );
+
+  todoList.addTodoItem(
+    new TodoItem(
+      "Bake Panncakes",
+      "Promised my younger brother to help him bake pancakes at 17:00 tomorrow",
+      "2022-12-30 15:00:00"
+    )
+  );
+
+  todoList.listToHTML(listContainer);
+  todoList.saveToLocalStorage();
+}

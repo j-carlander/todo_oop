@@ -39,4 +39,21 @@ class TodoList {
       }
     });
   }
+
+  saveToLocalStorage() {
+    localStorage.setItem("todoList", JSON.stringify(this.todos));
+  }
+
+  retrieveFromLocalStorage() {
+    let result = JSON.parse(localStorage.getItem("todoList")) || [];
+    for (let index in result) {
+      this.addTodoItem(
+        new TodoItem(
+          result[index].title,
+          result[index].content,
+          result[index].endDate
+        )
+      );
+    }
+  }
 }
