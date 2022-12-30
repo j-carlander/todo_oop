@@ -13,12 +13,15 @@ class TodoItem {
   getHTMLTemplate() {
     return `
         <details>
-      <summary>${this.title}</summary>
-      <p>${this.content}</p>
-      <p>
-        <span>Created: ${this.startDate}</span>
-        <span>Deadline: ${this.endDate}</span>
-        </p>
+      <summary><div class="flex-summary">
+        <h3 class="todo-title">${this.title}</h3><span class="todo-end-date">Deadline: ${this.endDate}</span>
+      </div></summary>
+      <div class="todo-content">
+        <p>${this.content}</p>
+        <p>
+          <span class="todo-start-date">Created: ${this.startDate}</span>
+          </p>
+      </div>
         </details>`;
   }
 

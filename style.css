@@ -1,0 +1,152 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #111;
+  background-image: url(assets/fireworks.jpg);
+  background-size: cover;
+  color: #fff;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+header {
+  padding: 3em 5em;
+}
+
+h1 {
+  text-align: center;
+  font-size: clamp(3rem, 10vw, 5rem);
+  color: white;
+  text-shadow: 0 0 5px black;
+  margin: 1em;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.page-search {
+  display: flex;
+  background-color: #fff;
+  width: clamp(30rem, 5rem, 50rem);
+  margin: 1em;
+  padding: 0.5em;
+  border-radius: 999px;
+  box-shadow: 2px 2px 4px #969696;
+
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.search-field {
+  width: 100%;
+  padding: 0.5em 0.3em;
+  border: none;
+  outline: none; /* tar bort blå fokus box */
+  font-size: 1.1rem;
+}
+
+.search-field:focus:placeholder-shown {
+  font-weight: 100;
+  color: #a6a6a6;
+}
+
+li {
+  list-style: none;
+  color: #000;
+  margin: 0.5em;
+  font-size: 1.5rem;
+}
+
+.hide {
+  display: none;
+}
+
+.search-result-container,
+.create-todo-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(66, 66, 66, 0.3);
+}
+
+.dialog-form {
+  width: 30%;
+  margin: 20% auto;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 0.3em;
+  color: #000;
+}
+
+.dialog-form > * {
+  margin: 0.3em 0;
+}
+
+.search-result-list {
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 27% auto;
+  padding: 2em 3em;
+  border-radius: 1em;
+}
+.show-todos {
+  margin-top: 3em;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.3rem;
+}
+
+.todo-list-title {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  font-size: 2rem;
+  /* width: 100%; */
+  padding: 0.5em;
+  background-color: #000;
+}
+
+#showDialog {
+  font-family: monospace;
+  font-size: 1.5rem;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: #fff;
+  float: right;
+}
+
+summary {
+  width: 100%;
+}
+
+.flex-summary {
+  width: 90%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.todo-title {
+  display: inline-block;
+}
+.todo-end-date {
+  text-align: end;
+}
+
+.todo-content {
+  background-color: rgba(43, 43, 43, 0.5);
+  color: #fff;
+  border-radius: 0.3em;
+  padding: 0.2em;
+}

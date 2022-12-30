@@ -1,73 +1,106 @@
-const todoSubmitBtn = document.querySelector(".todo-submit-btn");
-
 const listContainer = document.querySelector(".todo-list-container");
+const searchResultContainer = document.querySelector(
+  ".search-result-container"
+);
+const searchResultList = document.querySelector(".search-result-list");
+const dialogContainer = document.querySelector(".create-todo-dialog");
+
+const todoTitle = dialogContainer.querySelector("#title");
+const todoContent = dialogContainer.querySelector("#content");
+const todoDeadline = dialogContainer.querySelector("#deadline");
 
 const showButton = document.querySelector("#showDialog");
-const dialog = document.querySelector(".create-todo-dialog");
-// const selectEl = favDialog.querySelector("select");
-// const confirmBtn = favDialog.querySelector("#confirmBtn");
+
+const todoSubmitBtn = dialogContainer.querySelector(".todo-submit-btn");
+const todoCancelBtn = dialogContainer.querySelector(".todo-cancel-btn");
+
+const searchField = document.querySelector(".search-field");
 
 let todoList = new TodoList();
 
-todoList.addTodoItem(
-  new TodoItem(
-    "Laundry",
-    "On monday at 15:00 I have to do laundry before parents arrive",
-    "2022-12-30 15:00:00"
-  )
-);
+function addDummyContent() {
+  todoList.addTodoItem(
+    new TodoItem(
+      "Laundry",
+      "On monday at 15:00 I have to do laundry before parents arrive",
+      "2022-12-30 15:00:00"
+    )
+  );
 
-todoList.addTodoItem(
-  new TodoItem(
-    "Dishes",
-    "On tuesday at 16:00 I have to do dishes before parents arrive",
-    "2022-12-30 15:00:00"
-  )
-);
+  todoList.addTodoItem(
+    new TodoItem(
+      "Dishes",
+      "On tuesday at 16:00 I have to do dishes before parents arrive",
+      "2022-12-30 15:00:00"
+    )
+  );
 
-todoList.addTodoItem(
-  new TodoItem(
-    "Bake Panncakes",
-    "Promised my younger brother to help him bake pancakes at 17:00 tomorrow",
-    "2022-12-30 15:00:00"
-  )
-);
+  todoList.addTodoItem(
+    new TodoItem(
+      "Bake Panncakes",
+      "Promised my younger brother to help him bake pancakes at 17:00 tomorrow",
+      "2022-12-30 15:00:00"
+    )
+  );
 
-todoList.printTitles();
+  todoList.listToHTML(listContainer);
+}
+
+// todoList.printTitles();
+
+// functions for eventhandlers
 
 function handleSubmitBtnClick(e) {
-  // let parent = e.target.parentNode;
-
-  //   console.log(parent);
-
-  const todoTitle = dialog.querySelector("#title");
-  const todoContent = dialog.querySelector("#content");
-  const todoDeadline = dialog.querySelector("#deadline");
-
   let deadlineValue = todoDeadline.value;
   deadlineValue = deadlineValue.replace("T", " ") + ":00";
   console.log(deadlineValue);
   todoList.addTodoItem(
     new TodoItem(todoTitle.value, todoContent.value, deadlineValue)
   );
+
+  dialogContainer.classList.add("hide");
   todoList.listToHTML(listContainer);
+
+  todoTitle.value = "";
+  todoContent.value = "";
+  todoDeadline.value = "";
 }
 
+function handleCancelBtnClick() {
+  dialogContainer.classList.add("hide");
+  todoTitle.value = "";
+  todoContent.value = "";
+  todoDeadline.value = "";
+}
+
+function handleSearch(e) {
+  if (e.key === "Enter") {
+    let searchValue = e.target.value;
+    let searchResult = todoList.getTodosByTitle(searchValue);
+    let resultList = new TodoList();
+    searchResult.forEach((result) => resultList.addTodoItem(result));
+    resultList.listToHTML(searchResultList);
+    searchResultContainer.classList.remove("hide");
+  }
+}
+
+// eventhandlers
+
 showButton.addEventListener("click", () => {
-  dialog.showModal();
+  dialogContainer.classList.remove("hide");
 });
 
-todoSubmitBtn.addEventListener("click", (e) => {
-  handleSubmitBtnClick(e);
+todoSubmitBtn.addEventListener("click", handleSubmitBtnClick);
+
+todoCancelBtn.addEventListener("click", handleCancelBtnClick);
+
+searchField.addEventListener("keypress", handleSearch);
+
+searchResultContainer.addEventListener("click", (event) => {
+  if (event.currentTarget != event.target) {
+    return false;
+  }
+  searchResultContainer.classList.add("hide");
 });
 
 todoList.listToHTML(listContainer);
-
-let todo = new TodoItem("Test", "Test if end date works");
-
-console.log(todo.endDate);
-
-todo.setDeadline("2022-12-31 12:00:00");
-console.log(todo.endDate);
-
-console.log(todoList.getTodosByTitle("clean"));

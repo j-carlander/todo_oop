@@ -13,15 +13,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1 class="hero-title">Hopeless Coordinators Inc.</h1>
-    </header>
-    <main>
-      <section class="create-todo">
-        <dialog class="create-todo-dialog">
-          <form method="dialog">
+    <div class="page-wrapper">
+      <header>
+        <h1 class="hero-title">Lacy Coordinators Inc.</h1>
+      </header>
+      <main>
+        <div class="page-search">
+          <label for="search-field" class="search-icon">&#x1F50E;</label>
+          <input
+            id="search-field"
+            class="search-field"
+            type="text"
+            placeholder="Search todo..." />
+        </div>
+        <div class="search-result-container hide">
+          <ul class="search-result-list"></ul>
+        </div>
+        <div class="create-todo-dialog hide">
+          <form class="dialog-form">
             <div class="label-input-wrapper">
-              <label for="title">What do you need to do?</label>
+              <label for="title">What to do </label>
               <input
                 type="text"
                 name=""
@@ -37,12 +48,8 @@
                 placeholder="Enter description" />
             </div>
             <div class="label-input-wrapper">
-              <label for="deadline"></label>
-              <input
-                type="datetime-local"
-                name=""
-                id="deadline"
-                placeholder="Pick end date" />
+              <label for="deadline">When due </label>
+              <input type="datetime-local" name="" id="deadline" />
             </div>
             <button type="button" class="todo-submit-btn" value="default">
               Create ToDo
@@ -51,12 +58,15 @@
               Cancel
             </button>
           </form>
-        </dialog>
-        <p><button id="showDialog">+</button></p>
-      </section>
-      <section>
-        <ul class="todo-list-container"></ul>
-      </section>
-    </main>
+        </div>
+
+        <section class="show-todos">
+          <p class="todo-list-title">
+            Todos:<button id="showDialog">+</button>
+          </p>
+          <ul class="todo-list-container"></ul>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
