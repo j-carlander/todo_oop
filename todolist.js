@@ -27,4 +27,16 @@ class TodoList {
     });
     container.innerHTML = list.innerHTML;
   }
+
+  getUrgentTodos() {
+    console.log("These Todos have deadlines within 4 hours");
+    this.todos.forEach((todo) => {
+      let now = new Date();
+      let endDate = new Date(todo.endDate);
+      if (endDate - now < 14400000) {
+        // 14 400 000 milliseconds is 4 hours
+        console.log(todo.title);
+      }
+    });
+  }
 }
